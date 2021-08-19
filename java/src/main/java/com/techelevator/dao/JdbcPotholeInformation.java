@@ -38,17 +38,7 @@ public class JdbcPotholeInformation implements PotholeInformationDAO, ResultSetE
         String sql = "SELECT id, date_created, longitude, latitude, s.severity, s.status, picture FROM pothole_information p " +
                 "JOIN  schedule s ON p.id = s.pothole_id " +
                 "ORDER BY s.severity DESC";
-//        SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
-//        ArrayList<PotholeInformation> potholes = new ArrayList<>();
-//        try {
-//            while(result.next()) {
-//                PotholeInformation potholeInformation = mapRowToPotholeInformation(result);
-//                potholes.add(potholeInformation);
-//            }
-//        }  catch (DataAccessException ex) {
-//            System.out.println(ex.getMessage());
-//        }
-//        return potholes;
+
 
         return jdbcTemplate.query(sql, new RowMapper<PotholeInformation>(){
             @Override
