@@ -84,8 +84,8 @@ public class JdbcPotholeInformation implements PotholeInformationDAO, ResultSetE
         potholeID = jdbcTemplate.queryForObject(sql, Integer.class, pothole.getLongitude(), pothole.getLatitude());
 
         sql = "INSERT INTO schedule (pothole_id) VALUES (?)";
-        jdbcTemplate.update(sql, potholeID);
-
+        int response = jdbcTemplate.update(sql, potholeID);
+        if (response != 0){
         sql = "SELECT date_created FROM pothole_information WHERE id = ?";
         Date date = jdbcTemplate.queryForObject(sql, Date.class, potholeID);
 
@@ -93,7 +93,7 @@ public class JdbcPotholeInformation implements PotholeInformationDAO, ResultSetE
             sql = "UPDATE schedule SET date_reported = ? WHERE pothole_id = ?";
             jdbcTemplate.update(sql, date, potholeID);
         }
-
+    }
     }
 
     @Override

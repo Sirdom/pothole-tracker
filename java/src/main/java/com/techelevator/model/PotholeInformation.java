@@ -11,6 +11,11 @@ public class PotholeInformation {
     private double latitude;
     private String status;
     private String picture;
+    private String shape;
+
+    public PotholeInformation(int potholeId){
+        this.potholeId = potholeId;
+    }
 
     public String getPicture() {
         return picture;

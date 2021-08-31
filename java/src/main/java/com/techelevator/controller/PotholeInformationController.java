@@ -37,6 +37,13 @@ public class PotholeInformationController {
         potholeService.delete(id);
     }
 
+    @RequestMapping(path="/potholes", method = RequestMethod.DELETE)
+    @PreAuthorize("hasAnyRole('EMPLOYEE', 'ADMIN')")
+    public void deletePotholes(@RequestParam int id) {
+        potholeService.delete(id);
+    }
+
+
     @RequestMapping(path="/potholes", method = RequestMethod.POST)
     @PreAuthorize("hasAnyRole('ADMIN', 'USER', 'EMPLOYEE')")
     public void createReport(@Valid @RequestBody PotholeInformation pothole) {
